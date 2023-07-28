@@ -24,6 +24,31 @@ def send_message(message):
     bot.send_message(chat_id=user.id , text= f"👋 Hello 👤 {user.first_name}(@{user.username}) Welcome To Yaberus Result Bot 🚀 , where you can explore your result and acadamic status 📊 , Just send us your ID over here  ")
 
 
+@bot.message_handler(commands=['help'])
+def send_welcome(message):
+    user = message.from_user
+    help_message = f"""
+   To check you result , You have to give the id that the school has provided for you.
+
+   Like YW/12121/912
+
+   🚀 For more info , you can contact - +251 92 273 0604
+
+
+"""
+    bot.send_message(chat_id=user.id, text=help_message)
+
+@bot.message_handler(commands=['dev'])
+def send_dev(message):
+    user = message.from_user
+
+    help_message = f"""
+   Developed by 💻 - @Kinfe123
+🚀 For more info , you can contact - +251 92 273 0604
+
+
+"""
+    bot.send_message(chat_id=user.id , text=help_message)
 
 
 @bot.message_handler(func=lambda message: True)
@@ -67,8 +92,9 @@ def message_handler(message):
             .
                 \t
                 PERSONAL DETAILS 🧑
-                
           ----------------------------------------
+
+
             👤 NAME ➖   {result['name']}
 
             🆔 ID ➖  {result['id']}
@@ -97,7 +123,7 @@ def message_handler(message):
       
       # Send a message to the user with their name
             bot.send_message(chat_id=message.chat.id, text=to_be_send)
-            bot.send_message(chat_id=message.chat.id , text='Please provide your ID to view results  ') 
+            bot.send_message(chat_id=message.chat.id , text=f'You have left with {view_count} views\n\n\nPlease provide your ID to view results') 
         else:
             bot.send_message(chat_id=message.chat.id , text=f"No such student 👤 with ID - {id_from_user}")
 
@@ -107,6 +133,8 @@ def message_handler(message):
 @bot.message_handler(commands=['hello'])
 def send_welcome(message):
     bot.reply_to(message, "HI!")
+
+
 
 
 try:
